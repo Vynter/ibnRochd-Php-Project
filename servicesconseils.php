@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Noir Bleu Blanc - Services-Conseils</title>
+    <title>IT Dev</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
 </head>
@@ -19,17 +19,51 @@
             <div id="content">
                 <!-- insérez le contenu de la page ici -->
                 <h1>Liste des CV</h1>
-                <p>Reconnue depuis plus de 25 ans pour son approche sur mesure axée sur les résultats et pour sa
-                    démarche
-                    rigoureuse de gestion de projets en 5 étapes, Noir_Bleu_Blanc vous offre un accompagnement
-                    stratégique TI
-                    360°, en mode projet ou impartition, une compréhension pointue de vos enjeux et priorités d’affaires
-                    ainsi
-                    qu’une volonté d’établir des partenariats à long terme.
-                    Ainsi, en nous choisissant comme partenaire TI, vous bénéficiez de l’expertise et de l’engagement
-                    d’une équipe
-                    professionnelle et pouvez alors consacrer toutes vos ressources à la réalisation de votre plan
-                    d’affaires.</p>
+                <div class="entete">
+                    <fieldset>
+                        <legend>Recherche des curriculum vitae</legend>
+                        <form action="" method="get" id="recherchecv">
+                            <table>
+                                <thead>
+                                    <th>Nom et Prénom :</th>
+                                    <th>Email</th>
+                                    <th>Poste</th>
+                                    <th>Diplôme</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input class="searchinp" type="text" name="fullname"
+                                                placeholder="Nom et Prénom.."></td>
+                                        <td><input class="searchinp" type="email" name="email" placeholder="Email..">
+                                        </td>
+                                        <td><input class="searchinp" type="text" name="poste" placeholder="Poste..">
+                                        </td>
+                                        <td><input class="searchinp" type="text" name="diplome" placeholder="Diplôme..">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><button id="sbmt" type="submit">Recherche</button></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+                        </form>
+
+                    </fieldset>
+                </div>
+                <div class="main">
+                    <table>
+                        <thead>
+                            <tr></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+
+                </div>
             </div>
             <div class="sidebar">
                 <!-- insérez vos éléments de la barre latérale ici -->
@@ -63,7 +97,7 @@
         <div id="footer">
             Copyright &copy; Noir_bleu_blanc
         </div>
-
+        <?php include('footer.php'); ?>
     </div>
 </body>
 

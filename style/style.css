@@ -169,12 +169,13 @@ ul#menu li a {
     text-transform: uppercase;
     text-decoration: none;
     background: transparent;
+    transition: ease-in-out 0.5s;
+    border-radius: 20px;
 }
 
 ul#menu li a:hover, ul#menu li.selected a:hover {
     color: #547cfc;
     background: #fff;
-    border-radius: 20px;
 }
 
 ul#menu li.selected a {
@@ -226,7 +227,7 @@ ul#menu li.selected a {
     font: normal 85% Arial, Helvetica, sans-serif;
     text-align: left;
     float: left;
-    width: 595px;
+    width: 80%;
     padding: 0;
 }
 
@@ -262,4 +263,49 @@ ul#menu li.selected a {
     width: 134px;
     padding: 4px;
     font: 100% arial, sans-serif;
+}
+
+.entete {
+    width: 80%;
+    margin: 0 auto;
+}
+
+fieldset {
+    width: 100%;
+    padding: 40px;
+    margin: auto;
+}
+
+table {
+    width: 80%;
+}
+
+#recherchecv {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.searchinp {
+    height: 30px;
+    padding: 5px 20px;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+#sbmt {
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #547cfc;
+    color: white;
+    border: #547cfc;
+    float: right;
+    margin: 10px;
+    transition: ease-in-out 0.5s;
+}
+
+#sbmt:hover {
+    background: white;
+    color: #547cfc;
 }

@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>Noir Bleu Blanc - Carrières</title>
+    <title>IT Dev</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
 </head>
@@ -12,7 +12,7 @@
 <body>
     <div id="main">
         <div id="header">
-            >
+
             <?php include('header.php'); ?>
         </div>
         <div id="site_content">
@@ -58,6 +58,8 @@
             Copyright &copy; Noir_bleu_blanc
         </div>
     </div>
+    <?php include('footer.php'); ?>
+    <script src="./script/javascript.js" defer></script>
 </body>
 
 </html>

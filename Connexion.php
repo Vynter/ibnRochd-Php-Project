@@ -10,4 +10,3 @@ try {
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
 }
-echo "ok";

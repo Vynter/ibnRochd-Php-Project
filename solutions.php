@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>Noir Bleu Blanc - Solutions</title>
+    <title>IT Dev</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
 </head>
@@ -60,6 +60,7 @@
         <div id="footer">
             Copyright &copy; Noir_bleu_blanc
         </div>
+        <?php include('footer.php'); ?>
     </div>
 </body>
 

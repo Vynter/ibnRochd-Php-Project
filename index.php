@@ -1,11 +1,9 @@
-<?php include("Connexion.php"); ?>
-
 <!DOCTYPE HTML>
 <html>
 
 <head>
     <meta charset="utf-8" />
-    <title>Noir Bleu Blanc</title>
+    <title>IT Dev</title>
     <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
 </head>
 
@@ -70,7 +68,7 @@
         <div id="footer">
             Copyright &copy; Noir_bleu_blanc
         </div>
-
+        <?php include('footer.php'); ?>
     </div>
 </body>
 
