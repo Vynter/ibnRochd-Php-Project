@@ -1,7 +1,10 @@
 <?php
 
 
-echo '      <div id="menubar">
+echo '
+<div id="logo">
+<img src="style/logo.png" alt="">
+</div>      <div id="menubar">
 <ul id="menu">
 
   <li><a href="index.php">À propos</a></li>

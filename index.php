@@ -12,14 +12,7 @@
 <body>
     <div id="main">
         <div id="header">
-            <div id="logo">
-                <div id="logo_text">
-                    <!-- class = "logo_colour", vous permet de changer la couleur du texte -->
-                    <h1><a href="index.html">Noir<span class="logo_couleur">_Bleu</span><span
-                                class="logo_couleur2">_Blanc</span></a></h1>
-                    <h2>Service et développement</h2>
-                </div>
-            </div>
+
             <?php include('header.php'); ?>
         </div>
 
