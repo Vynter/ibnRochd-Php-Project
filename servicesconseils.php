@@ -55,12 +55,47 @@
 
                     </fieldset>
                 </div>
-                <div class="main">
-                    <table>
-                        <thead>
-                            <tr></tr>
+                <div class="mainAff">
+                    <table cellspacing="0" cellpadding="0">
+                        <thead id="thAff">
+                            <tr>
+                                <th>Nom et prénom</th>
+                                <th>Adresse</th>
+                                <th>Téléphonne</th>
+                                <th>Email</th>
+                                <th>Consulter</th>
+                            </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                            <tr class="claire">
+                                <th><a href="#"> mokhtar</a></th>
+                                <th>Adresse</th>
+                                <th>Téléphonne</th>
+                                <th>Email</th>
+                                <th><a href="#"><img src="style/vue.png"></a></th>
+                            </tr>
+                            <tr class="foncé">
+                                <th><a href="#">Cheraitia amine</a></th>
+                                <th>Adresse</th>
+                                <th>Téléphonne</th>
+                                <th>Email</th>
+                                <th><a href="#"><img src="style/vue.png"></a></th>
+                            </tr>
+                            <tr class="claire">
+                                <th>Nom et prénom</th>
+                                <th>Adresse</th>
+                                <th>Téléphonne</th>
+                                <th>Email</th>
+                                <th><a href="#"><img src="style/vue.png"></a></th>
+                            </tr>
+                            <tr class="foncé">
+                                <th>Nom et prénom</th>
+                                <th>Adresse</th>
+                                <th>Téléphonne</th>
+                                <th>Email</th>
+                                <th><a href="#"><img src="style/vue.png"></a></th>
+                            </tr>
+                        </tbody>
                     </table>
 
                 </div>

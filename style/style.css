@@ -266,18 +266,20 @@ ul#menu li.selected a {
 }
 
 .entete {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
 
 fieldset {
-    width: 100%;
+    width: 80%;
     padding: 40px;
     margin: auto;
 }
 
 table {
-    width: 80%;
+    width: 90%;
 }
 
 #recherchecv {
@@ -308,4 +310,52 @@ table {
 #sbmt:hover {
     background: white;
     color: #547cfc;
+}
+
+#thAff {
+    background: #547cfc;
+    text-align: center;
+    height: 40px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#thAff th {}
+
+.mainAff {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.claire, .foncé {
+    text-align: center;
+    height: 40px;
+}
+
+.claire {
+    background: white;
+    color: #547cfc;
+}
+
+.foncé {
+    background: #98adf0;
+    color: white;
+}
+
+.claire a {
+    color: #547cfc;
+    text-decoration: none;
+}
+
+.foncé a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.claire img, .foncé img {
+    width: 30px;
 }
