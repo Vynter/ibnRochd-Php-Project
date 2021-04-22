@@ -65,9 +65,7 @@
 
         </div>
 
-        <div id="footer">
-            Copyright &copy; Noir_bleu_blanc
-        </div>
+
         <?php include('footer.php'); ?>
     </div>
 </body>

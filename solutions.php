@@ -57,9 +57,7 @@
                     s’adapte à toutes les exigences de votre métier pour vous fournir une solution sur mesure.</p>
             </div>
         </div>
-        <div id="footer">
-            Copyright &copy; Noir_bleu_blanc
-        </div>
+
         <?php include('footer.php'); ?>
     </div>
 </body>

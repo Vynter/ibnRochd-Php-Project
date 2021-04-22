@@ -54,9 +54,7 @@
                 </form>
             </div>
         </div>
-        <div id="footer">
-            Copyright &copy; Noir_bleu_blanc
-        </div>
+
     </div>
     <?php include('footer.php'); ?>
     <script src="./script/javascript.js" defer></script>

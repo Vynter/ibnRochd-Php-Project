@@ -1,3 +1,5 @@
-<?php
+<div id="footer">
+    Copyright &copy; IT Dev
+</div>
 
-echo '<script src="./script/javascript.js" defer></script>';
+<script src="./script/javascript.js" defer></script>';
