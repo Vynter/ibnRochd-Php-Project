@@ -1,5 +1,5 @@
 <div id="logo">
-    <img src="style/logo.png">
+    <img src="style/logo.png" alt="logo">
 </div>
 <div id="menubar">
     <ul id="menu">
