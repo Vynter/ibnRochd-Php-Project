@@ -348,14 +348,17 @@ table {
 
 .claire a {
     color: #547cfc;
-    text-decoration: none;
 }
 
 .foncé a {
     color: #fff;
-    text-decoration: none;
 }
 
 .claire img, .foncé img {
     width: 30px;
+}
+
+#main {
+    width: 100%;
+    padding-bottom: 30px;
 }

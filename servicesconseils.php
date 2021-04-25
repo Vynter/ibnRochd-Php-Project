@@ -16,7 +16,7 @@
 
         <div id="site_content">
 
-            <div id="content">
+            <div id="main">
                 <!-- insérez le contenu de la page ici -->
                 <h1>Liste des CV</h1>
                 <div class="entete">
@@ -82,14 +82,14 @@
                                 <th><a href="#"><img src="style/vue.png"></a></th>
                             </tr>
                             <tr class="claire">
-                                <th>Nom et prénom</th>
+                                <th><a href=""> Nom et prénom</a></th>
                                 <th>Adresse</th>
                                 <th>Téléphonne</th>
                                 <th>Email</th>
                                 <th><a href="#"><img src="style/vue.png"></a></th>
                             </tr>
                             <tr class="foncé">
-                                <th>Nom et prénom</th>
+                                <th><a href=""> Nom et prénom</a></th>
                                 <th>Adresse</th>
                                 <th>Téléphonne</th>
                                 <th>Email</th>
@@ -100,8 +100,9 @@
 
                 </div>
             </div>
+            <!--
             <div class="sidebar">
-                <!-- insérez vos éléments de la barre latérale ici -->
+                 
                 <h3>Dernières nouvelles</h3>
                 <h4>Lancement d'un nouveau site Web</h4>
                 <h5>1er août 2021</h5>
@@ -127,7 +128,7 @@
                             src="style/search.png" alt="Search" title="Search" />
                     </p>
                 </form>
-            </div>
+            </div>-->
         </div>
 
         <?php include('footer.php'); ?>
