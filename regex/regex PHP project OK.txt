@@ -1,0 +1,33 @@
+-envoyer le mail OK
+-chercher les projets vue laravel
+-check les papier et faire un plans dessus demain
+-projet php
+-envoyé les projet le soir
+
+
+
+
+function ch(num){
+  var regex=new RegExp(/^(0)[0-9]{9}$/);
+  var match = false; 
+  var numr= parseInt(num)
+
+	if(regex.test(num)){
+	match = true;	
+	}
+  return match;
+}
+
+
+
+
+
+function ch(nom){
+  var regex=new RegExp(/^[a-zA-Z]{1,30}$/g);
+  var match = false; 
+
+	if(regex.test(nom)){
+	match = true;	
+	}
+  return match;
+}
