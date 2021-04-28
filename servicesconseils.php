@@ -1,54 +1,47 @@
-<?php include('Connexion.php');
+<?php
+include('Connexion.php');
 
-$resultat = array();
-$liste = $pdo->query('select * from candidat ');
-$where = ' where ';
 
-if (isset($_GET['email']) !== "") {
-    $where .= '';
+
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$where = " WHERE e.id=c.id and f.id=c.id  ";
+
+
+$q = $pdo->query("SELECT DISTINCT c.id ,c.prenom as prenom,c.nom as nom ,c.adresse as adresse,c.email as email ,c.telephone as telephone
+FROM candidat as c , formation as f , experience as e ");
+
+//$q->execute(array());
+
+$resultat = $q->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+if (isset($_GET['email']) || isset($_GET['poste']) || isset($_GET['diplome']) || isset($_GET['nom']) || isset($_GET['prenom'])) {
+
+    if ($_GET['nom'] !== '') {
+        $where .= " and c.nom like '%" . $_GET['nom'] . "%' ";
+    }
+    if ($_GET['prenom'] !== '') {
+        $where .= " and c.prenom like '%" . $_GET['prenom'] . "%' ";
+    }
+
+    if ($_GET['email'] !== '') {
+        $where .= " and c.email like '%" . $_GET['email'] . "%' ";
+    }
+    if ($_GET['poste'] !== '') {
+        $where .= " and e.poste like '%" . $_GET['poste'] . "%' ";
+    }
+    if ($_GET['diplome'] !== '') {
+        $where .= " and f.diplome like '%" . $_GET['diplome'] . "%' ";
+    }
+
+    $q = $pdo->query("SELECT DISTINCT c.id ,c.prenom as prenom,c.nom as nom ,c.adresse as adresse,c.email as email ,c.telephone as telephone
+    FROM candidat as c,formation as f,experience as e $where  ");
+
+
+    $resultat = $q->fetchAll(PDO::FETCH_ASSOC);
 }
-
-if (isset($_GET['fullname']) || isset($_GET['email']) || isset($_GET['poste']) || isset($_GET['diplome'])) {
-    var_dump($_GET);
-
-    /*$email = empty($_GET['email']) ? "" : $_GET['email'];
-    $poste = empty($_GET['poste']) ? "" : $_GET['poste'];
-    $diplome = empty($_GET['diplome']) ? "" : $_GET['diplome'];*/
-
-    //echo "email = $email | poste = $poste | diplome = $diplome";
-    //if (empty($_GET['fullname'])) {
-    //    echo "est vide";
-    //}
-    //if ($_GET['fullname'] === "" && $_GET['email'] === "" && $_GET['poste'] === "" && $_GET['diplome'] === "") {
-    $liste = $pdo->prepare("SELECT c.prenom,c.nom,c.adresse,c.email,c.telephone 
-    FROM candidat as c,formation as f,expérience as e  
-    WHERE e.id=c.id and f.id=c.id and c.email like '%amine%' and c.poste like '%%' and c.diplome like '%%'
-    ");
-    $liste->execute();
-    /*$liste->execute(array(
-        ':email' => $email
-        /*':diplome' => $_GET['diplome'],
-        ':poste' => $_GET['poste'],*/
-    //));*/
-    $resultat = $liste->fetchAll(PDO::FETCH_ASSOC);
-    //}
-} else {
-    $liste = $pdo->query('select * from candidat ');
-    $resultat = $liste->fetchAll(PDO::FETCH_ASSOC);
-}
-//var_dump($resultat);
-//echo "ok";
-
-
-//if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
-//    $url = "https://";
-//else
-//    $url = "http://";
-// Append the host(domain name, ip) to the URL.   
-//$url .= $_SERVER['HTTP_HOST'];
-
-// Append the requested resource location to the URL   
-//$url .= $_SERVER['REQUEST_URI'];
 
 $url = "showprofile.php";
 $urlEdit = "editprofile.php";
@@ -80,15 +73,17 @@ $urlEdit = "editprofile.php";
                         <form action="" method="get" id="recherchecv">
                             <table>
                                 <thead>
-                                    <th>Nom et Prénom :</th>
+                                    <th>Nom :</th>
+                                    <th>Prénom :</th>
                                     <th>Email</th>
                                     <th>Poste</th>
                                     <th>Diplôme</th>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input class="searchinp" type="text" name="fullname"
-                                                placeholder="Nom et Prénom.."></td>
+                                        <td><input class="searchinp" type="text" name="nom" placeholder="Nom.."></td>
+                                        <td><input class="searchinp" type="text" name="prenom" placeholder="Prénom..">
+                                        </td>
                                         <td><input class="searchinp" type="email" name="email" placeholder="Email..">
                                         </td>
                                         <td><input class="searchinp" type="text" name="poste" placeholder="Poste..">
@@ -125,6 +120,7 @@ $urlEdit = "editprofile.php";
                             <?php
                             $i = 1;
                             foreach ($resultat as $value) {
+
                                 if ($i % 2 === 0) {
                                     echo '
                                 <tr class="foncé">

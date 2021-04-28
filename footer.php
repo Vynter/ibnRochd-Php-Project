@@ -2,4 +2,4 @@
     Copyright &copy; IT Dev
 </div>
 
-<script src="./script/javascript.js" defer></script>';
+<script src="./script/javascript.js" defer></script>
