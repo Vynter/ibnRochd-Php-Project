@@ -75,9 +75,9 @@ $urlEdit = "editprofile.php";
                                 <thead>
                                     <th>Nom :</th>
                                     <th>Prénom :</th>
-                                    <th>Email</th>
-                                    <th>Poste</th>
-                                    <th>Diplôme</th>
+                                    <th>Email :</th>
+                                    <th>Poste :</th>
+                                    <th>Diplôme :</th>
                                 </thead>
                                 <tbody>
                                     <tr>
@@ -92,6 +92,7 @@ $urlEdit = "editprofile.php";
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
