@@ -1,4 +1,12 @@
-<?php include("Connexion.php"); ?>
+<?php include("Connexion.php");
+
+$ql = $pdo->query("select * from langue");
+$lang = $ql->fetchAll(PDO::FETCH_ASSOC);
+
+$qs = $pdo->query("select * from logiciel");
+$soft = $qs->fetchAll(PDO::FETCH_ASSOC);
+
+?>
 
 <!DOCTYPE HTML>
 <html>
@@ -7,6 +15,7 @@
     <title>IT Dev</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
+    <link rel="stylesheet" type="text/css" href="style/carrier.css" title="style" />
 </head>
 
 <body>
@@ -17,16 +26,101 @@
         </div>
         <div id="site_content">
 
-            <div id="content">
+            <div id="main">
                 <!-- insérez le contenu de la page ici -->
                 <h1>Ajouter un CV</h1>
-                <p>La consultation autrement!</p>
-                <p> Travailler chez Noir_Bleu_Blanc, c’est intégrer une entreprise de services-conseils TI qui se
-                    distingue par sa très forte dimension humaine. Nous sommes fiers d’avoir été reconnus en 2020 parmi
-                    les 100 meilleurs employeurs en Algérie dans la catégorie PME.</p>
+                <form action="" method="get">
+                    <div id="infoCandidat">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Prénom*:
+                                    </th>
+                                    <th>
+                                        Nom*:
+                                    </th>
+                                    <th>
+                                        Adresse*:
+                                    </th>
+                                    <th>
+                                        Téléphone*:
+                                    </th>
+                                    <th>
+                                        Email*:
+                                    </th>
+                                    <th>
+                                        Permis*:
+                                    </th>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="text" name="prenom" id="" placeholder="Votre Prenom .."></td>
+                                    <td><input type="text" name="nom" id="" placeholder="Votre Nom .."></td>
+                                    <td><input type="text" name="adresse" id="" placeholder="Votre Adresse .."></td>
+                                    <td><input type="text" name="telephone" id="" placeholder="Votre Téléphone .."></td>
+                                    <td><input type="text" name="email" id="" placeholder="Votre Email .."></td>
+                                    <td>
+
+                                        <select name="permis" id="permis">
+                                            <option value="0">Non</option>
+                                            <option value="1">Oui</option>
+                                        </select>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Langue(s)*:
+                                    </th>
+                                    <th>
+                                        Logiciel(s)*:
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <select name="langue[]" id="lng" multiple>
+                                            <?php
+                                            foreach ($lang as $lng) {
+                                                echo '<option value="' . $lng['id_langue'] . '">' . $lng['description'] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </td>
+                                    <td>
+
+                                        <select name="logiciel[]" id="log" multiple>
+                                            <?php
+                                            foreach ($soft as $s) {
+                                                echo '<option value="' . $s['id_logiciel'] . '">' . $s['description'] . '</option>';
+                                            }
+                                            ?>
+
+
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="expCandidat">
+
+                    </div>
+                    <div id="formCandidat">
+
+                    </div>
+                    <div id="loisirCandidat">
+
+                    </div>
+
+                    <button type="submit">ok</button>
+
+                </form>
+
             </div>
-            <div class="sidebar">
-                <!-- insérez vos éléments de la barre latérale ici -->
+            <!--<div class="sidebar">
+                <!-- insérez vos éléments de la barre latérale ici 
                 <h3>Dernières nouvelles</h3>
                 <h4>Lancement d'un nouveau site Web</h4>
                 <h5>1er août 2021</h5>
@@ -52,7 +146,7 @@
                             src="style/search.png" alt="Search" title="Search" />
                     </p>
                 </form>
-            </div>
+            </div>-->
         </div>
 
     </div>

@@ -29,7 +29,7 @@ $logiciel = $qs->fetchAll(PDO::FETCH_ASSOC);
 $qci =  $pdo->query("SELECT * FROM `loisir` where id=" . $_GET['id'] . "");
 $loisir = $qci->fetchAll(PDO::FETCH_ASSOC);
 
-//fetch expérience
+// fetch expérience
 $set = $pdo->query("SET lc_time_names = 'fr_FR'");
 $qexp =  $pdo->query("SELECT DATE_FORMAT(date_debut, '%M %Y') as `date_debut`, DATE_FORMAT(date_fin, '%M %Y') as `date_fin`,`nom_ent`,`secteur`,`poste`,`mission` FROM experience as e , candidat as c where e.id = c.id and c.id =" . $_GET['id'] . "");
 $exp = $qexp->fetchAll(PDO::FETCH_ASSOC);

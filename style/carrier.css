@@ -1,0 +1,29 @@
+tr td input, #permis {
+    margin: 0 auto;
+    height: 30px;
+    padding: 5px 15px;
+    margin: 10px;
+    width: 80%;
+    border-radius: 20px;
+}
+
+th {
+    /*text-align: left;*/
+}
+
+select {
+    width: 80%;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    text-align: center;
+    /* center checkbox horizontally */
+    vertical-align: middle;
+    /* center checkbox vertically */
+}
