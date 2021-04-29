@@ -9,6 +9,33 @@ $res = $q->fetch();
 if (($_GET['id'] == "") || ($q->rowCount() == 0)) {
     header('Location: servicesconseils.php');
 }
+
+// fetch formation
+$qf = $pdo->query("SELECT * FROM formation as f WHERE id=" . $_GET['id'] . "");
+$formation = $qf->fetchAll(PDO::FETCH_ASSOC);
+
+// fetch langue
+
+$ql = $pdo->query("SELECT l.description ,p.id FROM parler as p, langue as l where l.id_langue = p.id_langue and p.id=" . $_GET['id'] . "  ORDER BY description ASC ");
+$langue = $ql->fetchAll(PDO::FETCH_ASSOC);
+
+// fetch logiciels
+
+$qs =  $pdo->query("SELECT description, m.id FROM logiciel as l, maitrise as m where l.id_logiciel = m.id_logiciel and id=" . $_GET['id'] . "");
+$logiciel = $qs->fetchAll(PDO::FETCH_ASSOC);
+
+// fetch centre d'interer
+
+$qci =  $pdo->query("SELECT * FROM `loisir` where id=" . $_GET['id'] . "");
+$loisir = $qci->fetchAll(PDO::FETCH_ASSOC);
+
+//fetch expérience
+$set = $pdo->query("SET lc_time_names = 'fr_FR'");
+$qexp =  $pdo->query("SELECT DATE_FORMAT(date_debut, '%M %Y') as `date_debut`, DATE_FORMAT(date_fin, '%M %Y') as `date_fin`,`nom_ent`,`secteur`,`poste`,`mission` FROM experience as e , candidat as c where e.id = c.id and c.id =" . $_GET['id'] . "");
+$exp = $qexp->fetchAll(PDO::FETCH_ASSOC);
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -30,11 +57,11 @@ if (($_GET['id'] == "") || ($q->rowCount() == 0)) {
         <div id="main">
             <div id="cvheader">
                 <div id="cvinfo">
-                    <p><?php echo $res['nom'] . " " . $res['prenom']; ?></p>
-                    <p>Adresse : <?php echo $res['adresse'] ?></p>
+                    <p><?php echo ucfirst($res['nom']) . " " . ucfirst($res['prenom']); ?></p>
+                    <p>Adresse : <?php echo ucfirst($res['adresse']) ?></p>
                     <p>Tél : <?php echo $res['telephone'] ?></p>
                     <p>E-mail : <?php echo $res['email'] ?></p>
-                    <p>Permis de conduire</p>
+                    <p><?php echo $res['permis'] ? "Permis de conduire" : "" ?> </p>
                 </div>
                 <img src="./style/cvshow.png" alt="">
             </div>
@@ -46,32 +73,22 @@ if (($_GET['id'] == "") || ($q->rowCount() == 0)) {
             <br>
 
             <table>
-                <tr>
-                    <td class="dateD">Février 2020</td>
-                    <td class="mission" rowspan="2">Mission :<br> - Analyse des comptes
-                        - Etablir le budget annuel
-                        - Clôture des comptes</td>
+                <?php
+                foreach ($exp as $xp) {
+
+
+                    echo '<tr>
+                <td class="dateD">' . ucfirst($xp["date_debut"]) . '</td>
+                <td class="mission" rowspan="2">' . $xp['nom_ent'] . ', ' . $xp['secteur'] . ', ' . $xp['poste'] . '<br>  Mission :<br>' . $xp['mission'] . '</td>
                 </tr>
                 <tr>
-                    <td class="dateF">Février 2021</td>
+                    <td class="dateF">' . ucfirst($xp['date_fin']) . '</td>
                     <td></td>
                 </tr>
-                <tr></tr>
-                <tr>
-                    <td class="dateD">Mars 2020</td>
-                    <td class="mission" rowspan="2">Mission :<br> Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit.
-                        Autem quae
-                        veniam aliquid
-                        eveniet quisquam
-                        libero itaque, eum repellat repellendus aperiam doloribus tempore quod asperiores architecto
-                        maiores
-                        voluptas illo, magnam labore?</td>
-                </tr>
-                <tr>
-                    <td class="dateF">Avril 2021</td>
-                    <td></td>
-                </tr>
+                <tr></tr>';
+                }
+                ?>
+
             </table>
         </div>
         <div id="cursus">
@@ -79,36 +96,63 @@ if (($_GET['id'] == "") || ($q->rowCount() == 0)) {
             <br>
 
             <table>
-                <tr>
+                <?php
+
+                foreach ($formation as $f) {
+                    echo '                <tr>
                     <td class="dateD">Diplôme</td>
                     <td class="mission">
-                        Licence en science de gestion option finance et comptabilité
+                        ' . $f["diplome"] . '
                     </td>
                 </tr>
                 <tr>
                     <td class="dateF">Etablissement</td>
-                    <td>Dely ibrahim</td>
+                    <td>' . $f["établissement"] . ' </td>
                 </tr>
                 <tr></tr>
+                    ';
+                }
+
+                echo '
                 <tr>
-                    <td class="dateD">Diplôme</td>
-                    <td class="mission">
-                        Bts en informatique option base de donner
-                    </td>
-                </tr>
-                <tr>
-                    <td class="dateF">Etablissement</td>
-                    <td>Mohamed tayeb boucena</td>
-                </tr>
-                <tr></tr>
+                <td class="dateD">Langue(s)</td>
+                <td class="mission">
+                ';
+                foreach ($langue as $l) {
+
+
+                    echo $l["description"] . ' ';
+                }
+                echo '</td>
+                </tr>';
+
+
+                echo '<tr>
+                <td class="dateF">Logiciels maîtrisés</td>
+                <td>';
+                foreach ($logiciel as $s) {
+                    echo $s["description"] . ' ';
+                }
+                echo '</td>
+                </tr>';
+                ?>
+
+
             </table>
         </div>
 
         <div id="centre">
             <h3>CENTRES D'INTERETS</h3>
             <br>
+            <p>
+                <?php
 
-            <p>sport, foot, baseball</p>
+                foreach ($loisir as $ci) {
+                    echo $ci['description'] . ' ';
+                }
+
+                ?>
+            </p>
         </div>
 
     </div>
