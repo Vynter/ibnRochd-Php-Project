@@ -58,11 +58,13 @@ $loisirs = $qci->fetchAll(PDO::FETCH_ASSOC);
                                 </tr>
 
                                 <tr>
-                                    <td><input type="text" name="prenom" id="" placeholder="Votre Prenom .."></td>
-                                    <td><input type="text" name="nom" id="" placeholder="Votre Nom .."></td>
-                                    <td><input type="text" name="adresse" id="" placeholder="Votre Adresse .."></td>
-                                    <td><input type="text" name="telephone" id="" placeholder="Votre Téléphone .."></td>
-                                    <td><input type="text" name="email" id="" placeholder="Votre Email .."></td>
+                                    <td><input type="text" name="prenom" id="prenom" placeholder="Votre Prenom .."></td>
+                                    <td><input type="text" name="nom" id="nom" placeholder="Votre Nom .."></td>
+                                    <td><input type="text" name="adresse" id="adresse" placeholder="Votre Adresse ..">
+                                    </td>
+                                    <td><input type="text" name="telephone" id="telephone"
+                                            placeholder="Votre Téléphone .."></td>
+                                    <td><input type="text" name="email" id="email" placeholder="Votre Email .."></td>
                                     <td>
 
                                         <select name="permis" id="permis">
@@ -175,17 +177,23 @@ $loisirs = $qci->fetchAll(PDO::FETCH_ASSOC);
                         </table>
                     </div>
 
-                    <button type="submit">Enregistrer</button>
+                    <button id="sbmt" type="submit">Enregistrer</button>
 
                 </form>
 
             </div>
 
         </div>
-
+        <div class="box-modale" v-if="revealModale">
+            <div class="overlay" v-on:click="toggleModale"></div>
+            <div class="card modale">
+                <div class="btn-modale btn">x</div>
+                <p>Vous etes bel et bien enregistrer !</p>
+            </div>
+        </div>
     </div>
     <?php include('footer.php'); ?>
-    <script src="./script/javascript.js" defer></script>
+    <script src="./script/validation.js" defer></script>
 </body>
 
 </html>
