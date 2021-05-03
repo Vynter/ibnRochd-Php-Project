@@ -16,12 +16,37 @@ btn.addEventListener("click", function () {
 
 //regex
 
+//telephone
 function tel(num) {
   var regex = new RegExp(/^(0)[0-9]{9}$/);
   var match = false;
   var numr = parseInt(num);
 
   if (regex.test(num)) {
+    match = true;
+  }
+  return match;
+}
+//text without number and special caractere
+
+function ch(text) {
+  var regex = new RegExp(/^[a-zA-ZÀ-ú]{1,30}$/g);
+  var match = false;
+
+  if (regex.test(text)) {
+    match = true;
+  }
+  return match;
+}
+//email format
+
+function emailTest(text) {
+  var regex = new RegExp(
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+  );
+  var match = false;
+
+  if (regex.test(text)) {
     match = true;
   }
   return match;
@@ -51,6 +76,7 @@ submit.addEventListener("click", function (e) {
   let etablissement = document.querySelector("#etablissement").value;
   let loisir = document.querySelector("#loisir").value;
   let error = document.querySelector("#error").value;
+  let valid = true;
 
   if (
     prenom == "" ||
@@ -74,9 +100,35 @@ submit.addEventListener("click", function (e) {
     console.log("submit done");
     return false;
   }
+  if (ch(prenom) == false) {
+    alert("le format du prenom n'est pas correcte");
+    valid = false;
+  }
+  if (ch(nom) == false) {
+    alert("le format du Nom n'est pas correcte");
+    valid = false;
+  }
+  if (ch(secteur) == false) {
+    alert("le format du Secteur n'est pas correcte");
+    valid = false;
+  }
+  if (ch(poste) == false) {
+    alert("le format du Poste n'est pas correcte");
+    valid = false;
+  }
+  console.log("ICI");
+  if (emailTest(email) == false) {
+    console.log("dedans je teste");
+    alert("le format de l'Email n'est pas correcte");
+    valid = false;
+  }
+
   if (tel(telephone) == false) {
     alert("le format du telephone est faux");
-  } else {
+    valid = false;
+  }
+
+  if (valid) {
     form.submit();
   }
 });
