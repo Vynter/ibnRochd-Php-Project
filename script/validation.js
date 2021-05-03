@@ -14,6 +14,19 @@ btn.addEventListener("click", function () {
   modal.style.display = "none";
 });
 
+//regex
+
+function tel(num) {
+  var regex = new RegExp(/^(0)[0-9]{9}$/);
+  var match = false;
+  var numr = parseInt(num);
+
+  if (regex.test(num)) {
+    match = true;
+  }
+  return match;
+}
+
 //validation
 
 //let prenom = document.querySelector("#prenom").value;
@@ -61,5 +74,9 @@ submit.addEventListener("click", function (e) {
     console.log("submit done");
     return false;
   }
-  form.submit();
+  if (tel(telephone) == false) {
+    alert("le format du telephone est faux");
+  } else {
+    form.submit();
+  }
 });
