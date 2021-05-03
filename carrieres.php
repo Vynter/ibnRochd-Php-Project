@@ -32,7 +32,7 @@ $loisirs = $qci->fetchAll(PDO::FETCH_ASSOC);
             <div id="main">
                 <!-- insérez le contenu de la page ici -->
                 <h1>Ajouter un CV</h1>
-                <form action="" method="get">
+                <form action="" method="get" id="myForm">
                     <div id="infoCandidat">
                         <table>
                             <tbody>
@@ -124,12 +124,15 @@ $loisirs = $qci->fetchAll(PDO::FETCH_ASSOC);
                                     <th>Missions et tâches réalisées*:</th>
                                 </tr>
                                 <tr>
-                                    <td><input type="date" name="dateD" id=""></td>
-                                    <td><input type="date" name="dateF" id=""></td>
-                                    <td><input type="text" name="entreprise" id="" placeholder="Entreprise .."></td>
-                                    <td><input type="text" name="secteur" id="" placeholder="Secteur .."></td>
-                                    <td><input type="text" name="poste" id="" placeholder="Poste .."></td>
-                                    <td><textarea name="mission" id="" cols="30" rows="10"></textarea></td>
+                                    <td><input type="date" name="dateD" id="dateD"></td>
+                                    <td><input type="date" name="dateF" id="dateF"></td>
+                                    <td><input type="text" name="entreprise" id="entreprise"
+                                            placeholder="Entreprise .."></td>
+                                    <td><input type="text" name="secteur" id="secteur" placeholder="Secteur .."></td>
+                                    <td><input type="text" name="poste" id="poste" placeholder="Poste .."></td>
+                                    <td><textarea name="mission" id="mission" cols="30" rows="10"
+                                            placeholder="Vos missions et tâches .."></textarea>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -145,8 +148,10 @@ $loisirs = $qci->fetchAll(PDO::FETCH_ASSOC);
                                     <th>Etablissement*:</th>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" name="diplome" id="" placeholder="Votre Diplome .."></td>
-                                    <td><input type="text" name="etablissement" id="" placeholder="Etablissement ..">
+                                    <td><input type="text" name="diplome" id="diplome" placeholder="Votre Diplome ..">
+                                    </td>
+                                    <td><input type="text" name="etablissement" id="etablissement"
+                                            placeholder="Etablissement ..">
                                     </td>
 
                                 </tr>
@@ -188,7 +193,8 @@ $loisirs = $qci->fetchAll(PDO::FETCH_ASSOC);
             <div class="overlay" v-on:click="toggleModale"></div>
             <div class="card modale">
                 <div class="btn-modale btn">x</div>
-                <p>Vous etes bel et bien enregistrer !</p>
+                <p>Veuillez saisir le(s) champ(s) :</p>
+                <p id="error">Prenom , Nom</p>
             </div>
         </div>
     </div>

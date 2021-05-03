@@ -96,3 +96,8 @@ select {
     color: #547cfc;
     border: solid 0.2px #547cfc;
 }
+
+textarea {
+    padding: 5px;
+    border-radius: 10px;
+}
