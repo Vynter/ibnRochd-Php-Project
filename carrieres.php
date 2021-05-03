@@ -6,6 +6,9 @@ $lang = $ql->fetchAll(PDO::FETCH_ASSOC);
 $qs = $pdo->query("select * from logiciel");
 $soft = $qs->fetchAll(PDO::FETCH_ASSOC);
 
+$qci = $pdo->query("select id_loisir, description from loisir");
+$loisirs = $qci->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE HTML>
@@ -104,49 +107,80 @@ $soft = $qs->fetchAll(PDO::FETCH_ASSOC);
                             </tbody>
                         </table>
                     </div>
+                    <br><br>
                     <div id="expCandidat">
-
+                        <h1>Expérience(s)</h1>
+                        <hr><br><br>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Date Debut*:</th>
+                                    <th>Date Fin*:</th>
+                                    <th>Nom de l'entreprise*:</th>
+                                    <th>Secteur*:</th>
+                                    <th>Poste*:</th>
+                                    <th>Missions et tâches réalisées*:</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="date" name="dateD" id=""></td>
+                                    <td><input type="date" name="dateF" id=""></td>
+                                    <td><input type="text" name="entreprise" id="" placeholder="Entreprise .."></td>
+                                    <td><input type="text" name="secteur" id="" placeholder="Secteur .."></td>
+                                    <td><input type="text" name="poste" id="" placeholder="Poste .."></td>
+                                    <td><textarea name="mission" id="" cols="30" rows="10"></textarea></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
+                    <br><br>
                     <div id="formCandidat">
+                        <h1>Formation</h1>
+                        <hr><br><br>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Diplôme*:</th>
+                                    <th>Etablissement*:</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="diplome" id="" placeholder="Votre Diplome .."></td>
+                                    <td><input type="text" name="etablissement" id="" placeholder="Etablissement ..">
+                                    </td>
 
-                    </div>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div><br><br>
                     <div id="loisirCandidat">
+                        <h1>Centre d'intêrets</h1>
+                        <hr><br><br>
+                        <table>
+                            <tbody>
+                                <tr class="loisir">
+                                    <th>Loisir(s)*:</th>
+                                </tr>
+                                <tr class="loisir">
+                                    <td class="loisir">
+                                        <select name="loisir[]" id="loisir" multiple>
+                                            <?php
+                                            foreach ($loisirs as $loisir) {
+                                                echo '<option value="' . $loisir['id_loisir'] . '">' . $loisir['description'] . '</option>';
+                                            }
+                                            ?>
 
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
-                    <button type="submit">ok</button>
+                    <button type="submit">Enregistrer</button>
 
                 </form>
 
             </div>
-            <!--<div class="sidebar">
-                <!-- insérez vos éléments de la barre latérale ici 
-                <h3>Dernières nouvelles</h3>
-                <h4>Lancement d'un nouveau site Web</h4>
-                <h5>1er août 2021</h5>
-                <p>2021 voit la refonte de notre site Web. Jetez un œil et dites-nous ce que vous en pensez.<br /><a
-                        href="#">Lire la suite</a></p>
-                <p></p>
-                <h4>Lancement d'un nouveau site Web</h4>
-                <h5>1er août 2021</h5>
-                <p>2021 voit la refonte de notre site Web. Jetez un œil et dites-nous ce que vous en pensez.<br /><a
-                        href="#">Lire la suite</a></p>
-                <h3>Liens utiles</h3>
-                <ul>
-                    <li><a href="#">Liens 1</a></li>
-                    <li><a href="#">Liens 2</a></li>
-                    <li><a href="#">Liens 3</a></li>
-                    <li><a href="#">Liens 4</a></li>
-                </ul>
-                <h3>Chercher</h3>
-                <form method="post" action="#" id="search_form">
-                    <p>
-                        <input class="search" type="text" name="search_field" value="Entrez des mots clés....." />
-                        <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;"
-                            src="style/search.png" alt="Search" title="Search" />
-                    </p>
-                </form>
-            </div>-->
+
         </div>
 
     </div>

@@ -26,7 +26,7 @@ $logiciel = $qs->fetchAll(PDO::FETCH_ASSOC);
 
 // fetch centre d'interer
 
-$qci =  $pdo->query("SELECT * FROM `loisir` where id=" . $_GET['id'] . "");
+$qci =  $pdo->query("SELECT a.id, l.description FROM `avoir` as a, candidat as c, loisir as l WHERE l.id_loisir=a.id_loisir and c.id =a.id and a.id=" . $_GET['id'] . "");
 $loisir = $qci->fetchAll(PDO::FETCH_ASSOC);
 
 // fetch expérience

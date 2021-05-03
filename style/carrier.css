@@ -27,3 +27,7 @@ td {
     vertical-align: middle;
     /* center checkbox vertically */
 }
+
+select {
+    width: 204px;
+}
