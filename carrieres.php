@@ -9,6 +9,48 @@ $soft = $qs->fetchAll(PDO::FETCH_ASSOC);
 $qci = $pdo->query("select id_loisir, description from loisir");
 $loisirs = $qci->fetchAll(PDO::FETCH_ASSOC);
 
+if (isset($_POST) && count($_POST) > 0) {
+    $candidat = $pdo->prepare("INSERT INTO `candidat` (`id`, `prenom`, `nom`, `adresse`, `telephone`, `email`, `permis`) 
+    VALUES (NULL, :prenom, :nom, :adresse, :telephone, :email, :permis) ");
+    $candidat->execute(array(
+        'prenom' => $_POST['prenom'],
+        'nom' => $_POST['nom'],
+        'adresse' => $_POST['adresse'],
+        'telephone' => $_POST['telephone'],
+        'email' => $_POST['email'],
+        'permis' => $_POST['permis'],
+    ));
+    //echo "enregistrement fait" . $pdo->lastInsertId();
+    $lastId = $pdo->lastInsertId();
+
+    foreach ($_POST['langue'] as $k) {
+        //echo $k . "<br>";
+        $langue = $pdo->prepare("INSERT INTO `parler` (`id_langue`, `id`) VALUES (:id_langue , :id ) ");
+        $langue->execute(array(
+            'id_langue' => $k,
+            'id' => $lastId
+        ));
+    }
+
+    foreach ($_POST['logiciel'] as $l) {
+        echo $l . "<br>";
+        $logiciel = $pdo->prepare("INSERT INTO `maitrise` (`id_logiciel`, `id`) VALUES (:id_logiciel, :id) ");
+        $logiciel->execute(array(
+            'id_logiciel' => $l,
+            'id' => $lastId
+        ));
+    }
+}
+
+if (isset($_POST['langue'])) {
+    /*var_dump($_POST['langue']);
+    foreach ($_POST['langue'] as $k) {
+        echo $k . "<br>";
+    }*/
+} else {
+    //echo 'ok' . $pdo->lastInsertId();
+}
+
 ?>
 
 <!DOCTYPE HTML>
@@ -32,7 +74,7 @@ $loisirs = $qci->fetchAll(PDO::FETCH_ASSOC);
             <div id="main">
                 <!-- insérez le contenu de la page ici -->
                 <h1>Ajouter un CV</h1>
-                <form action="" method="get" id="myForm">
+                <form action="" method="post" id="myForm">
                     <div id="infoCandidat">
                         <table>
                             <tbody>
@@ -193,8 +235,8 @@ $loisirs = $qci->fetchAll(PDO::FETCH_ASSOC);
             <div class="overlay" v-on:click="toggleModale"></div>
             <div class="card modale">
                 <div class="btn-modale btn">x</div>
-                <p>Veuillez saisir le(s) champ(s) :</p>
-                <p id="error">Prenom , Nom</p>
+                <p>Veuillez saisir le(s) champ(s) obligatoire</p>
+                <!--<p id="error"></p>-->
             </div>
         </div>
     </div>

@@ -54,8 +54,6 @@ function emailTest(text) {
 
 //validation
 
-//let prenom = document.querySelector("#prenom").value;
-
 submit.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -75,7 +73,7 @@ submit.addEventListener("click", function (e) {
   let diplome = document.querySelector("#diplome").value;
   let etablissement = document.querySelector("#etablissement").value;
   let loisir = document.querySelector("#loisir").value;
-  let error = document.querySelector("#error").value;
+  //let error = document.querySelector("#error").value;
   let valid = true;
 
   if (
@@ -116,9 +114,8 @@ submit.addEventListener("click", function (e) {
     alert("le format du Poste n'est pas correcte");
     valid = false;
   }
-  console.log("ICI");
+
   if (emailTest(email) == false) {
-    console.log("dedans je teste");
     alert("le format de l'Email n'est pas correcte");
     valid = false;
   }

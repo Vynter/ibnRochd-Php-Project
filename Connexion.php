@@ -1,7 +1,7 @@
 <?php
 
 $servername = "127.0.0.1";
-$database = "cvapp";
+$database = "cv";
 $username = "root";
 $password = "root";
 
