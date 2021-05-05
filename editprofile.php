@@ -25,8 +25,23 @@ $id_logiciel = array();
 foreach ($logAff as  $value) {
     array_push($id_logiciel, $value['id_logiciel']);
 }
+//expérience
+$qExp = $pdo->query("SELECT * FROM `experience`  where id = " . $_GET['id'] . "");
+$resExp = $qExp->fetch();
 
-var_dump($id_logiciel);
+//formation
+$qFormation = $pdo->query("SELECT * FROM `formation`  where id = " . $_GET['id'] . "");
+$resFor = $qFormation->fetch();
+//loisir
+$qloisir = $pdo->query("SELECT * FROM `avoir`  WHERE  id= " . $_GET['id'] . "");
+$loisirAff = $qloisir->fetchAll(PDO::FETCH_ASSOC);
+$id_loisir = array();
+foreach ($loisirAff as  $value) {
+    array_push($id_loisir, $value['id_loisir']);
+}
+
+
+//var_dump($resExp);
 
 
 $ql = $pdo->query("select * from langue");
@@ -50,7 +65,7 @@ if (isset($_POST) && count($_POST) > 0) {
         'permis' => $_POST['permis'],
     ));
     //echo "enregistrement fait" . $pdo->lastInsertId();
-    $lastId = $pdo->lastInsertId();
+    //$lastId = $pdo->lastInsertId();
 }
 
 
@@ -187,14 +202,18 @@ if (isset($_POST) && count($_POST) > 0) {
                                     <th>Missions et tâches réalisées*:</th>
                                 </tr>
                                 <tr>
-                                    <td><input type="date" name="dateD" id="dateD"></td>
-                                    <td><input type="date" name="dateF" id="dateF"></td>
-                                    <td><input type="text" name="entreprise" id="entreprise"
-                                            placeholder="Entreprise .."></td>
-                                    <td><input type="text" name="secteur" id="secteur" placeholder="Secteur .."></td>
-                                    <td><input type="text" name="poste" id="poste" placeholder="Poste .."></td>
+                                    <td><input type="date" name="dateD" id="dateD"
+                                            value="<?= $resExp['date_debut']; ?>"></td>
+                                    <td><input type="date" name="dateF" id="dateF" value="<?= $resExp['date_fin']; ?>">
+                                    </td>
+                                    <td><input type="text" name="entreprise" id="entreprise" placeholder="Entreprise .."
+                                            value="<?= $resExp['nom_ent']; ?>"></td>
+                                    <td><input type="text" name="secteur" id="secteur" placeholder="Secteur .."
+                                            value="<?= $resExp['secteur']; ?>"></td>
+                                    <td><input type="text" name="poste" id="poste" placeholder="Poste .."
+                                            value="<?= $resExp['poste']; ?>"></td>
                                     <td><textarea name="mission" id="mission" cols="30" rows="10"
-                                            placeholder="Vos missions et tâches .."></textarea>
+                                            placeholder="Vos missions et tâches .."><?= $resExp['mission']; ?></textarea>
                                     </td>
                                 </tr>
                             </tbody>
@@ -211,10 +230,11 @@ if (isset($_POST) && count($_POST) > 0) {
                                     <th>Etablissement*:</th>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" name="diplome" id="diplome" placeholder="Votre Diplome ..">
+                                    <td><input type="text" name="diplome" id="diplome" placeholder="Votre Diplome .."
+                                            value="<?= $resFor['diplome']; ?>">
                                     </td>
                                     <td><input type="text" name="etablissement" id="etablissement"
-                                            placeholder="Etablissement ..">
+                                            placeholder="Etablissement .." value="<?= $resFor['établissement']; ?>">
                                     </td>
 
                                 </tr>
@@ -234,7 +254,15 @@ if (isset($_POST) && count($_POST) > 0) {
                                         <select name="loisir[]" id="loisir" multiple>
                                             <?php
                                             foreach ($loisirs as $loisir) {
-                                                echo '<option value="' . $loisir['id_loisir'] . '">' . $loisir['description'] . '</option>';
+
+                                                if (in_array($loisir['id_loisir'], $id_loisir)) {
+                                                    $selectCI = " selected ";
+                                                } else {
+                                                    $selectCI = "";
+                                                }
+
+
+                                                echo "<option value='" . $loisir['id_loisir'] . "' $selectCI >" . $loisir['description'] . "</option>";
                                             }
                                             ?>
 
