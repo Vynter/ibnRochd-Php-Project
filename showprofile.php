@@ -63,7 +63,7 @@ $exp = $qexp->fetchAll(PDO::FETCH_ASSOC);
                     <p>E-mail : <?php echo $res['email'] ?></p>
                     <p><?php echo $res['permis'] ? "Permis de conduire" : "" ?> </p>
                 </div>
-                <img src="./style/cvshow.png" alt="">
+                <img src="./style/showCvVide.png" alt="">
             </div>
 
         </div>

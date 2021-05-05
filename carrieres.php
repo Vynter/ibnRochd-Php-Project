@@ -87,7 +87,7 @@ if (isset($_POST['langue'])) {
 <html>
 
 <head>
-    <title>IT Dev</title>
+    <title>Ajouter un CV - IT Dev</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
     <link rel="stylesheet" type="text/css" href="style/carrier.css" title="style" />
