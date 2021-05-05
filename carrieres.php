@@ -33,13 +33,43 @@ if (isset($_POST) && count($_POST) > 0) {
     }
 
     foreach ($_POST['logiciel'] as $l) {
-        echo $l . "<br>";
+
         $logiciel = $pdo->prepare("INSERT INTO `maitrise` (`id_logiciel`, `id`) VALUES (:id_logiciel, :id) ");
         $logiciel->execute(array(
             'id_logiciel' => $l,
             'id' => $lastId
         ));
     }
+
+
+    $exp = $pdo->prepare("INSERT INTO `experience` (`id_exp`, `date_debut`, `date_fin`, `nom_ent`, `secteur`, `poste`, `mission`, `id`) 
+    VALUES (NULL, :dateD, :dateF, :entreprise, :secteur, :poste, :mission, :id) ");
+    $exp->execute(array(
+        'dateD' => $_POST['dateD'],
+        'dateF' => $_POST['dateF'],
+        'entreprise' => $_POST['entreprise'],
+        'secteur' => $_POST['secteur'],
+        'poste' => $_POST['poste'],
+        'mission' => $_POST['mission'],
+        'id' => $lastId
+    ));
+
+    foreach ($_POST['loisir'] as $loisir) {
+
+        $loisirs = $pdo->prepare("INSERT INTO `avoir` (`id_loisir`, `id`) VALUES (:id_loisir, :id) ");
+        $loisirs->execute(array(
+            'id_loisir' => $loisir,
+            'id' => $lastId
+        ));
+    }
+
+    $formation = $pdo->prepare("INSERT INTO `formation` ( `diplome`, `établissement`, `id`) 
+    VALUES ( :diplome, :etablissement, :id)");
+    $formation->execute(array(
+        'diplome' => $_POST['diplome'],
+        'etablissement' => $_POST['etablissement'],
+        'id' =>  $lastId
+    ));
 }
 
 if (isset($_POST['langue'])) {
