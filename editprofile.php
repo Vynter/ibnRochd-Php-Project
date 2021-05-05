@@ -2,7 +2,31 @@
 
 //echo "edit de " . $_GET['id'];
 
+$q = $pdo->query("select distinct * from candidat where id = " . $_GET['id'] . "");
+//$q->execute(array($_GET['id']));
+$res = $q->fetch();
 
+if (($_GET['id'] == "") || ($q->rowCount() == 0)) {
+    header('Location: servicesconseils.php');
+}
+
+
+//langue
+$qlAff = $pdo->query("SELECT * FROM parler WHERE  id= " . $_GET['id'] . "");
+$langAff = $qlAff->fetchAll(PDO::FETCH_ASSOC);
+$id_langues = array();
+foreach ($langAff as  $value) {
+    array_push($id_langues, $value['id_langue']);
+}
+//maitrise
+$qlogAff = $pdo->query("SELECT * FROM maitrise WHERE  id= " . $_GET['id'] . "");
+$logAff = $qlogAff->fetchAll(PDO::FETCH_ASSOC);
+$id_logiciel = array();
+foreach ($logAff as  $value) {
+    array_push($id_logiciel, $value['id_logiciel']);
+}
+
+var_dump($id_logiciel);
 
 
 $ql = $pdo->query("select * from langue");
@@ -27,64 +51,9 @@ if (isset($_POST) && count($_POST) > 0) {
     ));
     //echo "enregistrement fait" . $pdo->lastInsertId();
     $lastId = $pdo->lastInsertId();
-
-    foreach ($_POST['langue'] as $k) {
-        //echo $k . "<br>";
-        $langue = $pdo->prepare("INSERT INTO `parler` (`id_langue`, `id`) VALUES (:id_langue , :id ) ");
-        $langue->execute(array(
-            'id_langue' => $k,
-            'id' => $lastId
-        ));
-    }
-
-    foreach ($_POST['logiciel'] as $l) {
-
-        $logiciel = $pdo->prepare("INSERT INTO `maitrise` (`id_logiciel`, `id`) VALUES (:id_logiciel, :id) ");
-        $logiciel->execute(array(
-            'id_logiciel' => $l,
-            'id' => $lastId
-        ));
-    }
-
-
-    $exp = $pdo->prepare("INSERT INTO `experience` (`id_exp`, `date_debut`, `date_fin`, `nom_ent`, `secteur`, `poste`, `mission`, `id`) 
-    VALUES (NULL, :dateD, :dateF, :entreprise, :secteur, :poste, :mission, :id) ");
-    $exp->execute(array(
-        'dateD' => $_POST['dateD'],
-        'dateF' => $_POST['dateF'],
-        'entreprise' => $_POST['entreprise'],
-        'secteur' => $_POST['secteur'],
-        'poste' => $_POST['poste'],
-        'mission' => $_POST['mission'],
-        'id' => $lastId
-    ));
-
-    foreach ($_POST['loisir'] as $loisir) {
-
-        $loisirs = $pdo->prepare("INSERT INTO `avoir` (`id_loisir`, `id`) VALUES (:id_loisir, :id) ");
-        $loisirs->execute(array(
-            'id_loisir' => $loisir,
-            'id' => $lastId
-        ));
-    }
-
-    $formation = $pdo->prepare("INSERT INTO `formation` ( `diplome`, `établissement`, `id`) 
-    VALUES ( :diplome, :etablissement, :id)");
-    $formation->execute(array(
-        'diplome' => $_POST['diplome'],
-        'etablissement' => $_POST['etablissement'],
-        'id' =>  $lastId
-    ));
 }
 
-if (isset($_POST['langue'])) {
-    /*var_dump($_POST['langue']);
-    foreach ($_POST['langue'] as $k) {
-        echo $k . "<br>";
-    }*/
-} else {
-    //echo 'ok' . $pdo->lastInsertId();
-}
+
 
 ?>
 
@@ -108,7 +77,7 @@ if (isset($_POST['langue'])) {
 
             <div id="main">
                 <!-- insérez le contenu de la page ici -->
-                <h1>Ajouter un CV</h1>
+                <h1>Modifier le CV</h1>
                 <form action="" method="post" id="myForm">
                     <div id="infoCandidat">
                         <table>
@@ -135,18 +104,24 @@ if (isset($_POST['langue'])) {
                                 </tr>
 
                                 <tr>
-                                    <td><input type="text" name="prenom" id="prenom" placeholder="Votre Prenom .."></td>
-                                    <td><input type="text" name="nom" id="nom" placeholder="Votre Nom .."></td>
-                                    <td><input type="text" name="adresse" id="adresse" placeholder="Votre Adresse ..">
+                                    <td><input type="text" name="prenom" id="prenom" value=" <?= $res['prenom']; ?>"
+                                            placeholder="Votre Prenom .."></td>
+                                    <td><input type="text" name="nom" id="nom" value=" <?= $res['nom']; ?>"
+                                            placeholder="Votre Nom .."></td>
+                                    <td><input type="text" name="adresse" id="adresse" value=" <?= $res['adresse']; ?>"
+                                            placeholder="Votre Adresse ..">
                                     </td>
                                     <td><input type="text" name="telephone" id="telephone"
-                                            placeholder="Votre Téléphone .."></td>
-                                    <td><input type="text" name="email" id="email" placeholder="Votre Email .."></td>
+                                            value=" <?= $res['telephone']; ?>" placeholder="Votre Téléphone .."></td>
+                                    <td><input type="text" name="email" id="email" value=" <?= $res['email']; ?>"
+                                            placeholder="Votre Email .."></td>
                                     <td>
 
                                         <select name="permis" id="permis">
-                                            <option value="0">Non</option>
-                                            <option value="1">Oui</option>
+                                            <option value="0" <?= $res['permis'] == 0 ? "selected" : ""; ?>>Non
+                                            </option>
+                                            <option value="1" <?= $res['permis'] == 1 ? "selected" : ""; ?>>Oui
+                                            </option>
                                         </select>
 
                                     </td>
@@ -165,7 +140,13 @@ if (isset($_POST['langue'])) {
                                         <select name="langue[]" id="lng" multiple>
                                             <?php
                                             foreach ($lang as $lng) {
-                                                echo '<option value="' . $lng['id_langue'] . '">' . $lng['description'] . '</option>';
+                                                if (in_array($lng['id_langue'], $id_langues)) {
+                                                    $selectL = " selected ";
+                                                } else {
+                                                    $selectL = "";
+                                                }
+
+                                                echo "<option  value='" . $lng['id_langue'] . "' $selectL  >" . $lng['description'] . "</option>";
                                             }
                                             ?>
                                         </select>
@@ -175,7 +156,12 @@ if (isset($_POST['langue'])) {
                                         <select name="logiciel[]" id="log" multiple>
                                             <?php
                                             foreach ($soft as $s) {
-                                                echo '<option value="' . $s['id_logiciel'] . '">' . $s['description'] . '</option>';
+                                                if (in_array($s['id_logiciel'], $id_logiciel)) {
+                                                    $selectLog = " selected ";
+                                                } else {
+                                                    $selectLog = "";
+                                                }
+                                                echo "<option value='" . $s['id_logiciel'] . "' $selectLog >" . $s['description'] . "</option>";
                                             }
                                             ?>
 
