@@ -101,3 +101,20 @@ textarea {
     padding: 5px;
     border-radius: 10px;
 }
+
+#del {
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: rgb(179, 27, 27);
+    color: white;
+    border: #547cfc;
+    float: right;
+    margin: 10px;
+    transition: ease-in-out 0.5s;
+}
+
+#del:hover {
+    background: white;
+    color: rgb(179, 27, 27);
+}

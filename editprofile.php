@@ -10,6 +10,17 @@ if (($_GET['id'] == "") || ($q->rowCount() == 0)) {
     header('Location: servicesconseils.php');
 }
 
+if (isset($_POST["del"]) && count($_POST) > 0) {
+
+    $delExp = $pdo->query("DELETE FROM experience WHERE id = " . $_GET['id'] . "");
+    $delAvoir = $pdo->query("DELETE FROM avoir WHERE id = " . $_GET['id'] . "");
+    $delMaitrise = $pdo->query("DELETE FROM maitrise WHERE id = " . $_GET['id'] . "");
+    $delParler = $pdo->query("DELETE FROM parler WHERE id = " . $_GET['id'] . "");
+    $delParler = $pdo->query("DELETE FROM formation WHERE id = " . $_GET['id'] . "");
+    $delCandidat = $pdo->query("DELETE FROM candidat WHERE id = " . $_GET['id'] . "");
+
+    header('Location: servicesconseils.php');
+}
 
 //langue
 $qlAff = $pdo->query("SELECT * FROM parler WHERE  id= " . $_GET['id'] . "");
@@ -276,7 +287,9 @@ if (isset($_POST) && count($_POST) > 0) {
                     <button id="sbmt" type="submit">Enregistrer</button>
 
                 </form>
-
+                <form action="" method="POST">
+                    <button id="del" name="del" type="submit">Effacer</button>
+                </form>
             </div>
 
         </div>

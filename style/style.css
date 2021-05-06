@@ -321,8 +321,6 @@ table {
     font-size: 18px;
 }
 
-#thAff th {}
-
 .mainAff {
     display: flex;
     justify-content: center;
