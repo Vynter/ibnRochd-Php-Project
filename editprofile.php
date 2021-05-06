@@ -128,10 +128,78 @@ if (isset($_POST) && count($_POST) > 0) {
         ));
     }
 
+    if (
+        $_POST['dateD1'] !== "" && $_POST['dateF1'] !== "" && $_POST['entreprise1'] !== ""
+        && $_POST['secteur1'] !== "" && $_POST['poste1'] !== "" && $_POST['mission1'] !== ""
+    ) {
+
+        $exp = $pdo->prepare("INSERT INTO `experience` (`id_exp`, `date_debut`, `date_fin`, `nom_ent`, `secteur`, `poste`, `mission`, `id`) 
+        VALUES (NULL, :dateD, :dateF, :entreprise, :secteur, :poste, :mission, :id) ");
+        $exp->execute(array(
+            'dateD' => $_POST['dateD1'],
+            'dateF' => $_POST['dateF1'],
+            'entreprise' => $_POST['entreprise1'],
+            'secteur' => $_POST['secteur1'],
+            'poste' => $_POST['poste1'],
+            'mission' => $_POST['mission1'],
+            'id' => $_GET['id']
+        ));
+    }
+
+    if (
+        $_POST['dateD2'] !== "" && $_POST['dateF2'] !== "" && $_POST['entreprise2'] !== ""
+        && $_POST['secteur2'] !== "" && $_POST['poste2'] !== "" && $_POST['mission2'] !== ""
+    ) {
+
+        $exp = $pdo->prepare("INSERT INTO `experience` (`id_exp`, `date_debut`, `date_fin`, `nom_ent`, `secteur`, `poste`, `mission`, `id`) 
+        VALUES (NULL, :dateD, :dateF, :entreprise, :secteur, :poste, :mission, :id) ");
+        $exp->execute(array(
+            'dateD' => $_POST['dateD2'],
+            'dateF' => $_POST['dateF2'],
+            'entreprise' => $_POST['entreprise2'],
+            'secteur' => $_POST['secteur2'],
+            'poste' => $_POST['poste2'],
+            'mission' => $_POST['mission2'],
+            'id' => $_GET['id']
+        ));
+    }
 
 
     //formation
     $delParler = $pdo->query("DELETE FROM formation WHERE id = " . $_GET['id'] . "");
+
+    if (
+        $_POST['diplome0'] !== "" && $_POST['etablissement0'] !== ""
+    )
+        $formation = $pdo->prepare("INSERT INTO `formation` ( `diplome`, `établissement`, `id`) 
+    VALUES ( :diplome, :etablissement, :id)");
+    $formation->execute(array(
+        'diplome' => $_POST['diplome0'],
+        'etablissement' => $_POST['etablissement0'],
+        'id' =>  $_GET['id']
+    ));
+
+    if (
+        $_POST['diplome1'] !== "" && $_POST['etablissement1'] !== ""
+    )
+        $formation = $pdo->prepare("INSERT INTO `formation` ( `diplome`, `établissement`, `id`) 
+    VALUES ( :diplome, :etablissement, :id)");
+    $formation->execute(array(
+        'diplome' => $_POST['diplome1'],
+        'etablissement' => $_POST['etablissement1'],
+        'id' =>  $_GET['id']
+    ));
+
+    if (
+        $_POST['diplome2'] !== "" && $_POST['etablissement2'] !== ""
+    )
+        $formation = $pdo->prepare("INSERT INTO `formation` ( `diplome`, `établissement`, `id`) 
+    VALUES ( :diplome, :etablissement, :id)");
+    $formation->execute(array(
+        'diplome' => $_POST['diplome2'],
+        'etablissement' => $_POST['etablissement2'],
+        'id' =>  $_GET['id']
+    ));
 
 
     header('Location: servicesconseils.php');
