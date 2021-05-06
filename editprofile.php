@@ -22,37 +22,34 @@ if (isset($_POST["del"]) && count($_POST) > 0) {
     header('Location: servicesconseils.php');
 }
 
-//langue
+//langue formulaire
 $qlAff = $pdo->query("SELECT * FROM parler WHERE  id= " . $_GET['id'] . "");
 $langAff = $qlAff->fetchAll(PDO::FETCH_ASSOC);
 $id_langues = array();
 foreach ($langAff as  $value) {
     array_push($id_langues, $value['id_langue']);
 }
-//maitrise
+//maitrise formulaire
 $qlogAff = $pdo->query("SELECT * FROM maitrise WHERE  id= " . $_GET['id'] . "");
 $logAff = $qlogAff->fetchAll(PDO::FETCH_ASSOC);
 $id_logiciel = array();
 foreach ($logAff as  $value) {
     array_push($id_logiciel, $value['id_logiciel']);
 }
-//expérience
+//expérience formulaire
 $qExp = $pdo->query("SELECT * FROM `experience`  where id = " . $_GET['id'] . "");
-$resExp = $qExp->fetch();
+$resExp = $qExp->fetchAll(PDO::FETCH_ASSOC);
 
-//formation
+//formation  formulaire
 $qFormation = $pdo->query("SELECT * FROM `formation`  where id = " . $_GET['id'] . "");
-$resFor = $qFormation->fetch();
-//loisir
+$resFor = $qFormation->fetchAll();
+//loisir  formulaire
 $qloisir = $pdo->query("SELECT * FROM `avoir`  WHERE  id= " . $_GET['id'] . "");
 $loisirAff = $qloisir->fetchAll(PDO::FETCH_ASSOC);
 $id_loisir = array();
 foreach ($loisirAff as  $value) {
     array_push($id_loisir, $value['id_loisir']);
 }
-
-
-//var_dump($resExp);
 
 
 $ql = $pdo->query("select * from langue");
@@ -64,10 +61,15 @@ $soft = $qs->fetchAll(PDO::FETCH_ASSOC);
 $qci = $pdo->query("select id_loisir, description from loisir");
 $loisirs = $qci->fetchAll(PDO::FETCH_ASSOC);
 
+//update
+
 if (isset($_POST) && count($_POST) > 0) {
-    $candidat = $pdo->prepare("INSERT INTO `candidat` (`id`, `prenom`, `nom`, `adresse`, `telephone`, `email`, `permis`) 
-    VALUES (NULL, :prenom, :nom, :adresse, :telephone, :email, :permis) ");
-    $candidat->execute(array(
+
+    //update candidat
+    $candidUD = $pdo->prepare("UPDATE `candidat` SET `prenom`= :prenom ,`nom`= :nom,`adresse`= :adresse ,`telephone`= :telephone,`email`= :email,`permis`= :permis WHERE id = :id");
+
+    $candidUD->execute(array(
+        'id' => $_GET['id'],
         'prenom' => $_POST['prenom'],
         'nom' => $_POST['nom'],
         'adresse' => $_POST['adresse'],
@@ -75,9 +77,67 @@ if (isset($_POST) && count($_POST) > 0) {
         'email' => $_POST['email'],
         'permis' => $_POST['permis'],
     ));
-    //echo "enregistrement fait" . $pdo->lastInsertId();
-    //$lastId = $pdo->lastInsertId();
+
+    // logiciel & langue
+    $delMaitrise = $pdo->query("DELETE FROM maitrise WHERE id = " . $_GET['id'] . "");
+    $delParler = $pdo->query("DELETE FROM parler WHERE id = " . $_GET['id'] . "");
+    foreach ($_POST['langue'] as $k) {
+        //echo $k . "<br>";
+        $langue = $pdo->prepare("INSERT INTO `parler` (`id_langue`, `id`) VALUES (:id_langue , :id ) ");
+        $langue->execute(array(
+            'id_langue' => $k,
+            'id' => $_GET['id']
+        ));
+    }
+    foreach ($_POST['logiciel'] as $l) {
+
+        $logiciel = $pdo->prepare("INSERT INTO `maitrise` (`id_logiciel`, `id`) VALUES (:id_logiciel, :id) ");
+        $logiciel->execute(array(
+            'id_logiciel' => $l,
+            'id' => $_GET['id']
+        ));
+    }
+    // loisir
+    $delAvoir = $pdo->query("DELETE FROM avoir WHERE id = " . $_GET['id'] . "");
+    foreach ($_POST['loisir'] as $loisir) {
+
+        $loisirs = $pdo->prepare("INSERT INTO `avoir` (`id_loisir`, `id`) VALUES (:id_loisir, :id) ");
+        $loisirs->execute(array(
+            'id_loisir' => $loisir,
+            'id' => $_GET['id']
+        ));
+    }
+
+    //expérience
+    $delExp = $pdo->query("DELETE FROM experience WHERE id = " . $_GET['id'] . "");
+    if (
+        $_POST['dateD0'] !== "" && $_POST['dateF0'] !== "" && $_POST['entreprise0'] !== ""
+        && $_POST['secteur0'] !== "" && $_POST['poste0'] !== "" && $_POST['mission0'] !== ""
+    ) {
+
+        $exp = $pdo->prepare("INSERT INTO `experience` (`id_exp`, `date_debut`, `date_fin`, `nom_ent`, `secteur`, `poste`, `mission`, `id`) 
+        VALUES (NULL, :dateD, :dateF, :entreprise, :secteur, :poste, :mission, :id) ");
+        $exp->execute(array(
+            'dateD' => $_POST['dateD0'],
+            'dateF' => $_POST['dateF0'],
+            'entreprise' => $_POST['entreprise0'],
+            'secteur' => $_POST['secteur0'],
+            'poste' => $_POST['poste0'],
+            'mission' => $_POST['mission0'],
+            'id' => $_GET['id']
+        ));
+    }
+
+
+
+    //formation
+    $delParler = $pdo->query("DELETE FROM formation WHERE id = " . $_GET['id'] . "");
+
+
+    header('Location: servicesconseils.php');
 }
+
+
 
 
 
@@ -130,16 +190,16 @@ if (isset($_POST) && count($_POST) > 0) {
                                 </tr>
 
                                 <tr>
-                                    <td><input type="text" name="prenom" id="prenom" value=" <?= $res['prenom']; ?>"
+                                    <td><input type="text" name="prenom" id="prenom" value="<?= $res['prenom']; ?>"
                                             placeholder="Votre Prenom .."></td>
-                                    <td><input type="text" name="nom" id="nom" value=" <?= $res['nom']; ?>"
+                                    <td><input type="text" name="nom" id="nom" value="<?= $res['nom']; ?>"
                                             placeholder="Votre Nom .."></td>
-                                    <td><input type="text" name="adresse" id="adresse" value=" <?= $res['adresse']; ?>"
+                                    <td><input type="text" name="adresse" id="adresse" value="<?= $res['adresse']; ?>"
                                             placeholder="Votre Adresse ..">
                                     </td>
                                     <td><input type="text" name="telephone" id="telephone"
-                                            value=" <?= $res['telephone']; ?>" placeholder="Votre Téléphone .."></td>
-                                    <td><input type="text" name="email" id="email" value=" <?= $res['email']; ?>"
+                                            value="<?= $res['telephone']; ?>" placeholder="Votre Téléphone .."></td>
+                                    <td><input type="text" name="email" id="email" value="<?= $res['email']; ?>"
                                             placeholder="Votre Email .."></td>
                                     <td>
 
@@ -212,26 +272,56 @@ if (isset($_POST) && count($_POST) > 0) {
                                     <th>Poste*:</th>
                                     <th>Missions et tâches réalisées*:</th>
                                 </tr>
-                                <tr>
-                                    <td><input type="date" name="dateD" id="dateD"
-                                            value="<?= $resExp['date_debut']; ?>"></td>
-                                    <td><input type="date" name="dateF" id="dateF" value="<?= $resExp['date_fin']; ?>">
+                                <?php
+                                $i = 0;
+                                foreach ($resExp as $resEx) {
+                                    echo "
+                                    <tr>
+                                    <td><input type='date' name='dateD$i' id='dateD'
+                                            value='" . $resEx['date_debut'] . "'>
                                     </td>
-                                    <td><input type="text" name="entreprise" id="entreprise" placeholder="Entreprise .."
-                                            value="<?= $resExp['nom_ent']; ?>"></td>
-                                    <td><input type="text" name="secteur" id="secteur" placeholder="Secteur .."
-                                            value="<?= $resExp['secteur']; ?>"></td>
-                                    <td><input type="text" name="poste" id="poste" placeholder="Poste .."
-                                            value="<?= $resExp['poste']; ?>"></td>
-                                    <td><textarea name="mission" id="mission" cols="30" rows="10"
-                                            placeholder="Vos missions et tâches .."><?= $resExp['mission']; ?></textarea>
+                                    <td><input type='date' name='dateF$i' id='dateF' value='" . $resEx['date_fin'] . "'>
+                                    </td>
+                                    <td><input type='text' name='entreprise$i' id='entreprise' placeholder='Entreprise ..'
+                                            value='" . $resEx['nom_ent'] . "'></td>
+                                    <td><input type='text' name='secteur$i' id='secteur' placeholder='Secteur ..'
+                                            value='" . $resEx['secteur'] . "'></td>
+                                    <td><input type='text' name='poste$i' id='poste' placeholder='Poste ..'
+                                            value='" . $resEx['poste'] . "'></td>
+                                    <td><textarea name='mission$i' id='mission' cols='30' rows='10'
+                                            placeholder='Vos missions et tâches ..'>" . $resEx['mission'] . "</textarea>
+                                    </td>
+                                    </tr>
+
+                                ";
+                                    $i++;
+                                }
+                                //echo $i;
+                                for ($j = $i; $j < 3; $j++) {
+                                    echo "
+                                    <tr>
+                                    <td><input type='date' name='dateD$j' id='dateD' value=''>
+                                    </td>
+                                    <td><input type='date' name='dateF$j' id='dateF' value=''>
+                                    </td>
+                                    <td><input type='text' name='entreprise$j' id='entreprise' placeholder='Entreprise ..' value=''></td>
+                                    <td><input type='text' name='secteur$j' id='secteur' placeholder='Secteur ..' value=''></td>
+                                    <td><input type='text' name='poste$j' id='poste' placeholder='Poste ..' value=''>
+                                    </td>
+                                    <td><textarea name='mission$j' id='mission' cols='30' rows='10' placeholder='Vos missions et tâches ..'></textarea>
                                     </td>
                                 </tr>
+                                    ";
+                                }
+                                ?>
+
+
+
                             </tbody>
                         </table>
                     </div>
                     <br><br>
-                    <div id="formCandidat">
+                    <div id=" formCandidat">
                         <h1>Formation</h1>
                         <hr><br><br>
                         <table>
@@ -240,15 +330,37 @@ if (isset($_POST) && count($_POST) > 0) {
                                     <th>Diplôme*:</th>
                                     <th>Etablissement*:</th>
                                 </tr>
-                                <tr>
-                                    <td><input type="text" name="diplome" id="diplome" placeholder="Votre Diplome .."
-                                            value="<?= $resFor['diplome']; ?>">
-                                    </td>
-                                    <td><input type="text" name="etablissement" id="etablissement"
-                                            placeholder="Etablissement .." value="<?= $resFor['établissement']; ?>">
-                                    </td>
+                                <?php
+                                $k = 0;
+                                foreach ($resFor as $resf) {
+                                    echo "
+                                    <tr>
+                                        <td><input type='text' name='diplome$k' id='diplome' placeholder='Votre Diplome ..'
+                                                value='" . $resf['diplome'] . "'>
+                                        </td>
+                                        <td><input type='text' name='etablissement$k' id='etablissement'
+                                                placeholder='Etablissement ..' value='" . $resf['établissement'] . "'>
+                                        </td>
+                                    </tr>";
+                                    $k++;
+                                }
 
-                                </tr>
+                                for ($l = $k; $l < 3; $l++) {
+                                    echo "
+                                    <tr>
+                                        <td><input type='text' name='diplome$l' id='diplome' placeholder='Votre Diplome ..'
+                                                value=''>
+                                        </td>
+                                        <td><input type='text' name='etablissement$l' id='etablissement'
+                                                placeholder='Etablissement ..' value=''>
+                                        </td>
+                                    </tr>";
+                                }
+
+                                ?>
+
+
+
                             </tbody>
                         </table>
                     </div><br><br>
