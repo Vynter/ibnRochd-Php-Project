@@ -2,10 +2,10 @@
 include('Connexion.php');
 
 $q = $pdo->query("select distinct * from candidat where id = " . $_GET['id'] . "");
-//$q->execute(array($_GET['id']));
+
 $res = $q->fetch();
 
-//echo "show de " . $_GET['id'];
+
 if (($_GET['id'] == "") || ($q->rowCount() == 0)) {
     header('Location: servicesconseils.php');
 }

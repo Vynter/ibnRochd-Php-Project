@@ -18,9 +18,10 @@
             <div id="content">
                 <!-- insérez le contenu de la page ici -->
                 <h1>Services</h1>
-                <p>Les organisations évoluent constamment et doivent faire face à de nombreux défis. Noir_Bleu_Blanc
+                <p>Les organisations évoluent constamment et doivent faire face à de nombreux défis. IT Dev
                     vous
-                    accompagne dans toutes les étapes de votre projet de transformation numérique, afin qu’elle soit
+                    accompagne dans toutes les étapes de votre projet afin d'avoir une solution optimale , afin qu’elle
+                    soit
                     couronnée de
                     succès.
                     Grâce à nos communautés d’experts, nous sommes en mesure de vous proposer une offre unique de
@@ -35,10 +36,10 @@
                 <p>2021 voit la refonte de notre site Web. Jetez un œil et dites-nous ce que vous en pensez.<br /><a
                         href="#">Lire la suite</a></p>
                 <p></p>
-                <h4>Lancement d'un nouveau site Web</h4>
+                <h4>Lancement d'une nouvelle de platforme pour le support pour nos client</h4>
                 <h5>1er août 2021</h5>
-                <p>2021 voit la refonte de notre site Web. Jetez un œil et dites-nous ce que vous en pensez.<br /><a
-                        href="#">Lire la suite</a></p>
+                <p>2021 voit la platforme. Jetez un œil et dites-nous ce que vous en pensez.<br /><a href="#">Lire la
+                        suite</a></p>
                 <h3>Liens utiles</h3>
                 <ul>
                     <li><a href="#">Liens 1</a></li>

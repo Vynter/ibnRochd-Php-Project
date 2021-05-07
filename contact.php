@@ -74,8 +74,9 @@
 
             <div id="content">
                 <!-- insérez le contenu de la page ici -->
-                <h1>Contact Us</h1>
-                <p>Voici un exemple de l'apparence d'un formulaire de contact avec ce modèle:</p>
+                <h1>Contactez-Nous</h1>
+                <p>Si vous avez besoin de plus d'information concernant nos services ou bien concernant le recrutement
+                    nous vous invitons a nous contacter avec le formulaire ci-dessous:</p>
                 <form action="#" method="post">
                     <div class="form_settings">
                         <p><span>Name</span><input class="contact" type="text" name="your_name" value="" /></p>
@@ -87,8 +88,8 @@
                                 name="contact_submitted" value="submit" /></p>
                     </div>
                 </form>
-                <p><br /><br />REMARQUE: Un formulaire de contact comme celui-ci nécessiterait un moyen d'envoyer un
-                    e-mail à une adresse e-mail.</p>
+                <p><br /><br />REMARQUE: Si vous voulez nous envoyer votre cv, rendez-vous sur la partie Ajouter un CV.
+                </p>
             </div>
             <div class="sidebar">
                 <!-- insérez vos éléments de la barre latérale ici -->
@@ -98,10 +99,10 @@
                 <p>2021 voit la refonte de notre site Web. Jetez un œil et dites-nous ce que vous en pensez.<br /><a
                         href="#">Lire la suite</a></p>
                 <p></p>
-                <h4>Lancement d'un nouveau site Web</h4>
+                <h4>Lancement d'une nouvelle de platforme pour le support pour nos client</h4>
                 <h5>1er août 2021</h5>
-                <p>2021 voit la refonte de notre site Web. Jetez un œil et dites-nous ce que vous en pensez.<br /><a
-                        href="#">Lire la suite</a></p>
+                <p>2021 voit la platforme. Jetez un œil et dites-nous ce que vous en pensez.<br /><a href="#">Lire la
+                        suite</a></p>
                 <h3>Liens utiles</h3>
                 <ul>
                     <li><a href="#">Liens 1</a></li>

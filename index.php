@@ -18,11 +18,32 @@
 
             <div id="content">
                 <!-- insérez le contenu de la page ici -->
-                <h1>Bienvenue sur le site noir_bleu_blanc</h1>
-                <p>Depuis 1998, Noir_Bleu_Blanc accompagne les entreprises et organisations dans leur transformation
-                    numérique
-                    en offrant des services-conseils spécialisés en technologie de l’information à Alger et à Sétif.
-                    Services</p>
+                <h1>Bienvenue sur le site IT Dev</h1>
+                <p>Depuis 2008, année de création, IT Dev ssii Algérienne, ne cesse de s’affirmer sur le marché IT
+                    Algérien comme un acteur de référence dans le monde des solutions IT, Progiciels de gestion et ERPs,
+                    ingénierie logicielle, infogérance et développement web.</p>
+
+                <p>Aujourd’hui, IT Dev déploie des projets en Europe, Moyen-Orient et Afrique et s’est forgée une
+                    expérience confirmée et reconnue dans l’outsourcing des services informatiques offshore.
+
+                    Grâce à son expertise éprouvée dans l’intégration de solutions de gestion, IT Dev a réussi à se
+                    positionner également comme un partenaire stratégique pour les entreprises leaders dans le marché
+                    des solutions IT. C’est ainsi que IT Dev s’est vu attribuer la réputation d'être tout d'abord un
+                    conseiller et partenaires à ses clients avant d'être un prestataire de services et fournisseur de
+                    solution IT.</p>
+                <p>
+                    Le 1er objectif de la société est de mettre au profit de ces entreprises sa valeur ajoutée et
+                    réussir ses projets informatiques.
+
+                    Outre son activité sur le marché local, IT Dev dispose d’une offre externalisation de services
+                    informatiques offshore à forte valeur ajoutée conformes aux standards de qualité et aux exigences du
+                    marché international. C'est grâce à ces valeurs que IT Dev a pu gagner la confiance de grandes
+                    sociétés IT en Europe.
+
+                    En capitalisant sur son expérience et son savoir faire, IT Devgarantit à ses partenaires une
+                    plateforme solide pour mettre en oeuvre des opérations en Nearshore. IT Dev propose à ses
+                    partenaires des solutions d'accompagnement efficaces, une méthodologie éprouvée, une plateforme
+                    collaborative dédiée et des outils de suivi de projets qui ont fait leurs preuves.</p>
                 <p> Les organisations évoluent constamment et doivent faire face à de nombreux défis. Noir_Bleu_Blanc
                     vous
                     accompagne dans toutes les étapes de votre projet de transformation numérique, afin qu’elle soit
@@ -42,10 +63,10 @@
                 <p>2021 voit la refonte de notre site Web. Jetez un œil et dites-nous ce que vous en pensez.<br /><a
                         href="#">Lire la suite</a></p>
                 <p></p>
-                <h4>Lancement d'un nouveau site Web</h4>
+                <h4>Lancement d'une nouvelle de platforme pour le support pour nos client</h4>
                 <h5>1er août 2021</h5>
-                <p>2021 voit la refonte de notre site Web. Jetez un œil et dites-nous ce que vous en pensez.<br /><a
-                        href="#">Lire la suite</a></p>
+                <p>2021 voit la platforme. Jetez un œil et dites-nous ce que vous en pensez.<br /><a href="#">Lire la
+                        suite</a></p>
                 <h3>Liens utiles</h3>
                 <ul>
                     <li><a href="#">Liens 1</a></li>

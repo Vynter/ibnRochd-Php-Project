@@ -20,11 +20,11 @@ if (isset($_POST) && count($_POST) > 0) {
         'email' => $_POST['email'],
         'permis' => $_POST['permis'],
     ));
-    //echo "enregistrement fait" . $pdo->lastInsertId();
+
     $lastId = $pdo->lastInsertId();
 
     foreach ($_POST['langue'] as $k) {
-        //echo $k . "<br>";
+
         $langue = $pdo->prepare("INSERT INTO `parler` (`id_langue`, `id`) VALUES (:id_langue , :id ) ");
         $langue->execute(array(
             'id_langue' => $k,
@@ -72,14 +72,7 @@ if (isset($_POST) && count($_POST) > 0) {
     ));
 }
 
-if (isset($_POST['langue'])) {
-    /*var_dump($_POST['langue']);
-    foreach ($_POST['langue'] as $k) {
-        echo $k . "<br>";
-    }*/
-} else {
-    //echo 'ok' . $pdo->lastInsertId();
-}
+
 
 ?>
 

@@ -11,7 +11,7 @@ $where = " WHERE e.id=c.id and f.id=c.id  ";
 $q = $pdo->query("SELECT DISTINCT c.id ,c.prenom as prenom,c.nom as nom ,c.adresse as adresse,c.email as email ,c.telephone as telephone
 FROM candidat as c , formation as f , experience as e ");
 
-//$q->execute(array());
+
 
 $resultat = $q->fetchAll(PDO::FETCH_ASSOC);
 
@@ -147,69 +147,13 @@ $urlEdit = "editprofile.php";
                             }
                             ?>
 
-                            <!--
-                            <tr class="claire">
-                                <th><a href="#"> mokhtar</a></th>
-                                <th>Adresse</th>
-                                <th>Téléphonne</th>
-                                <th>Email</th>
-                                <th><a href="#"><img src="style/vue.png"></a></th>
-                            </tr>
-                            <tr class="foncé">
-                                <th><a href="#">Cheraitia amine</a></th>
-                                <th>Adresse</th>
-                                <th>Téléphonne</th>
-                                <th>Email</th>
-                                <th><a href="#"><img src="style/vue.png"></a></th>
-                            </tr>
-                            <tr class="claire">
-                                <th><a href=""> Nom et prénom</a></th>
-                                <th>Adresse</th>
-                                <th>Téléphonne</th>
-                                <th>Email</th>
-                                <th><a href="#"><img src="style/vue.png"></a></th>
-                            </tr>
-                            <tr class="foncé">
-                                <th><a href=""> Nom et prénom</a></th>
-                                <th>Adresse</th>
-                                <th>Téléphonne</th>
-                                <th>Email</th>
-                                <th><a href="#"><img src="style/vue.png"></a></th>
-                            </tr>-->
+
                         </tbody>
                     </table>
 
                 </div>
             </div>
-            <!--
-            <div class="sidebar">
-                 
-                <h3>Dernières nouvelles</h3>
-                <h4>Lancement d'un nouveau site Web</h4>
-                <h5>1er août 2021</h5>
-                <p>2021 voit la refonte de notre site Web. Jetez un œil et dites-nous ce que vous en pensez.<br /><a
-                        href="#">Lire la suite</a></p>
-                <p></p>
-                <h4>Lancement d'un nouveau site Web</h4>
-                <h5>1er août 2021</h5>
-                <p>2021 voit la refonte de notre site Web. Jetez un œil et dites-nous ce que vous en pensez.<br /><a
-                        href="#">Lire la suite</a></p>
-                <h3>Liens utiles</h3>
-                <ul>
-                    <li><a href="#">Liens 1</a></li>
-                    <li><a href="#">Liens 2</a></li>
-                    <li><a href="#">Liens 3</a></li>
-                    <li><a href="#">Liens 4</a></li>
-                </ul>
-                <h3>Chercher</h3>
-                <form method="post" action="#" id="search_form">
-                    <p>
-                        <input class="search" type="text" name="search_field" value="Entrez des mots clés....." />
-                        <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;"
-                            src="style/search.png" alt="Search" title="Search" />
-                    </p>
-                </form>
-            </div>-->
+
         </div>
 
         <?php include('footer.php'); ?>
