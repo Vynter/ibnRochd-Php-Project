@@ -170,36 +170,38 @@ if (isset($_POST) && count($_POST) > 0) {
 
     if (
         $_POST['diplome0'] !== "" && $_POST['etablissement0'] !== ""
-    )
+    ) {
         $formation = $pdo->prepare("INSERT INTO `formation` ( `diplome`, `établissement`, `id`) 
     VALUES ( :diplome, :etablissement, :id)");
-    $formation->execute(array(
-        'diplome' => $_POST['diplome0'],
-        'etablissement' => $_POST['etablissement0'],
-        'id' =>  $_GET['id']
-    ));
+        $formation->execute(array(
+            'diplome' => $_POST['diplome0'],
+            'etablissement' => $_POST['etablissement0'],
+            'id' =>  $_GET['id']
+        ));
+    }
 
     if (
         $_POST['diplome1'] !== "" && $_POST['etablissement1'] !== ""
-    )
+    ) {
         $formation = $pdo->prepare("INSERT INTO `formation` ( `diplome`, `établissement`, `id`) 
     VALUES ( :diplome, :etablissement, :id)");
-    $formation->execute(array(
-        'diplome' => $_POST['diplome1'],
-        'etablissement' => $_POST['etablissement1'],
-        'id' =>  $_GET['id']
-    ));
-
+        $formation->execute(array(
+            'diplome' => $_POST['diplome1'],
+            'etablissement' => $_POST['etablissement1'],
+            'id' =>  $_GET['id']
+        ));
+    }
     if (
         $_POST['diplome2'] !== "" && $_POST['etablissement2'] !== ""
-    )
+    ) {
         $formation = $pdo->prepare("INSERT INTO `formation` ( `diplome`, `établissement`, `id`) 
     VALUES ( :diplome, :etablissement, :id)");
-    $formation->execute(array(
-        'diplome' => $_POST['diplome2'],
-        'etablissement' => $_POST['etablissement2'],
-        'id' =>  $_GET['id']
-    ));
+        $formation->execute(array(
+            'diplome' => $_POST['diplome2'],
+            'etablissement' => $_POST['etablissement2'],
+            'id' =>  $_GET['id']
+        ));
+    }
 
 
     header('Location: servicesconseils.php');

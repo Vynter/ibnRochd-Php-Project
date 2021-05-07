@@ -1,5 +1,6 @@
 <div id="logo">
-    <img src="style/logo.png" alt="logo">
+    <a href="index.php">
+        <img src="style/logo.png" alt="logo"></a>
 </div>
 <div id="menubar">
     <ul id="menu">

@@ -28,16 +28,16 @@ function tel(num) {
   return match;
 }
 //text without number and special caractere
-
+/*
 function ch(text) {
-  var regex = new RegExp(/^[a-zA-ZÀ-ú]{1,30}$/g);
+  var regex = new RegExp(/^([a-zA-ZÀ-ú]\s){1,30}$/g);
   var match = false;
 
   if (regex.test(text)) {
     match = true;
   }
   return match;
-}
+}*/
 //email format
 
 function emailTest(text) {
@@ -73,6 +73,7 @@ submit.addEventListener("click", function (e) {
   let diplome = document.querySelector("#diplome").value;
   let etablissement = document.querySelector("#etablissement").value;
   let loisir = document.querySelector("#loisir").value;
+  let adresse = document.querySelector("#adresse").value;
   //let error = document.querySelector("#error").value;
   let valid = true;
 
@@ -98,7 +99,7 @@ submit.addEventListener("click", function (e) {
     console.log("submit done");
     return false;
   }
-  if (ch(prenom) == false) {
+  /*if (ch(prenom) == false) {
     alert("le format du prenom n'est pas correcte");
     valid = false;
   }
@@ -114,7 +115,7 @@ submit.addEventListener("click", function (e) {
     alert("le format du Poste n'est pas correcte");
     valid = false;
   }
-
+*/
   if (emailTest(email) == false) {
     alert("le format de l'Email n'est pas correcte");
     valid = false;
@@ -122,6 +123,57 @@ submit.addEventListener("click", function (e) {
 
   if (tel(telephone) == false) {
     alert("le format du telephone est faux");
+    valid = false;
+  }
+
+  /*if (nom.length > 35) {
+  }*/
+
+  /*function lng(str) {
+    if (str.length > 25) {
+      console.log("ok");
+    }else{ console.log("not ok")}
+  }*/
+
+  if (nom.length > 25) {
+    alert("Le nom ne doit pas dépasser une longueur de 25");
+    valid = false;
+  }
+  if (prenom.length > 25) {
+    alert("Le prénom ne doit pas dépasser une longueur de 25");
+    valid = false;
+  }
+  if (adresse.length > 25) {
+    alert("Le adresse ne doit pas dépasser une longueur de 25");
+    valid = false;
+  }
+  if (email.length > 35) {
+    alert("Le adresse email ne doit pas dépasser une longueur de 35");
+    valid = false;
+  }
+
+  if (entreprise.length > 25) {
+    alert("Le nom de l'entreprise ne doit pas dépasser une longueur de 25");
+    valid = false;
+  }
+
+  if (secteur.length > 25) {
+    alert("Le nom du secteur ne doit pas dépasser une longueur de 25");
+    valid = false;
+  }
+
+  if (poste.length > 35) {
+    alert("Le titre du poste ne doit pas dépasser une longueur de 35");
+    valid = false;
+  }
+
+  if (diplome.length > 35) {
+    alert("Le titre du diplome ne doit pas dépasser une longueur de 35");
+    valid = false;
+  }
+
+  if (etablissement.length > 35) {
+    alert("Le nom de l'établissement ne doit pas dépasser une longueur de 35");
     valid = false;
   }
 
